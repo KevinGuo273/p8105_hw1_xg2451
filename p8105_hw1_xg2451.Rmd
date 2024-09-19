@@ -1,0 +1,48 @@
+---
+title: "p8105_hw1_xg2451"
+author: "Xuanyu Guo"
+date: "2024-09-17"
+output: html_document
+---
+# Problem 1
+```{r}
+# load the penguins dataset
+data("penguins", package = "palmerpenguins")
+```
+The `penguins` dataset includes several variables about penguin measurements and observations such as species, island, bill length (mm), bill depth (mm), flipper length (mm), body mass (g), sex and study year.
+
+The dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+The mean flipper length across all penguins in the dataset is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm.
+
+```{r}
+# Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points using the species variable
+library(ggplot2)
+penguins <- na.omit(penguins)  # Remove rows containing missing values
+
+p <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  labs(title = "Scatterplot of Flipper Length vs Bill Length",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+p
+```
+```{r}
+# Export scatterplot to project directory using ggsave
+ggsave("penguins_scatterplot.png", plot = p, width = 10, height = 8)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
